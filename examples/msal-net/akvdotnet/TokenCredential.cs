@@ -21,10 +21,12 @@ public class MyClientAssertionCredential : TokenCredential
         var clientID = Environment.GetEnvironmentVariable("AZURE_CLIENT_ID");
         var tokenPath = Environment.GetEnvironmentVariable("AZURE_FEDERATED_TOKEN_FILE");
         var tenantID = Environment.GetEnvironmentVariable("AZURE_TENANT_ID");
+        var region = ConfidentialClientApplication.AttemptRegionDiscovery; // Part one
 
         _confidentialClientApp = ConfidentialClientApplicationBuilder.Create(clientID)
                 .WithClientAssertion(ReadJWTFromFS(tokenPath))
-                .WithTenantId(tenantID).Build();
+                .WithTenantId(tenantID).Build()
+                .WithAzureRegion(region);
     }
 
     public override AccessToken GetToken(TokenRequestContext requestContext, CancellationToken cancellationToken)
