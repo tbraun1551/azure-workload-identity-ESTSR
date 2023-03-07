@@ -21,7 +21,7 @@ public class MyClientAssertionCredential : TokenCredential
         var clientID = Environment.GetEnvironmentVariable("AZURE_CLIENT_ID");
         var tokenPath = Environment.GetEnvironmentVariable("AZURE_FEDERATED_TOKEN_FILE");
         var tenantID = Environment.GetEnvironmentVariable("AZURE_TENANT_ID");
-        var region = ConfidentialClientApplication.AttemptRegionDiscovery; // Part one
+        var region = ConfidentialClientApplication.AttemptRegionDiscovery; // Initial Attempt at Making this Regional
 
         _confidentialClientApp = ConfidentialClientApplicationBuilder.Create(clientID)
                 .WithClientAssertion(ReadJWTFromFS(tokenPath))
