@@ -26,7 +26,9 @@ class MyClientAssertionCredential {
             scopes: [scopes],
             azureRegion: "westus2" // Specify the region you will deploy your application to here. E.g. "westus2"
         };
-        const token = await this.app.acquireTokenByClientCredential({scopes: [scopes], azureRegion: "westus"}).catch(error => console.log(error))
+
+        // { scopes: [scopes], azureRegion: "westus2" }
+        const token = await this.app.acquireTokenByClientCredential(clientCredentialRequest).catch(error => console.log(error))
         return new Promise((resolve, reject) => {
             if (token) {
                 resolve({
